@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navbar } from "./Navbar";
-import { SearchResultsList } from "./SearchResultsList";
+import { Main } from "./Main";
 
 export default function App() {
   const tempMovieData = [
@@ -57,15 +57,7 @@ export default function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-      <Main tempMovieData={tempMovieData} />
+      <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData} />
     </>
-  );
-}
-function Main({ tempMovieData }) {
-  return (
-    <div className="main">
-      <SearchResultsList tempMovieData={tempMovieData} />
-      {/* <WatchedList /> */}
-    </div>
   );
 }

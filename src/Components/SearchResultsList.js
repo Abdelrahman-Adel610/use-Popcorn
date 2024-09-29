@@ -1,21 +1,16 @@
-import { useState } from "react";
 import { GenenricPreviewItem } from "./GenenricPreviewItem";
+import { GenericList } from "./GenericList";
 
 export function SearchResultsList({ tempMovieData }) {
-  const [isOpen, setState] = useState(true);
+  return <GenericList data={tempMovieData} List={RenderList} />;
+}
+function RenderList({ data }) {
   return (
-    <div className="box">
-      <button className="btn-toggle" onClick={() => setState((s) => !s)}>
-        {isOpen ? "-" : "+"}
-      </button>
-      {isOpen && (
-        <ul className="list list-movies">
-          {tempMovieData.map((el) => (
-            <WatchedItem film={el} key={el.imdbID} />
-          ))}
-        </ul>
-      )}
-    </div>
+    <ul className="list list-movies">
+      {data.map((el) => (
+        <WatchedItem film={el} key={el.imdbID} />
+      ))}
+    </ul>
   );
 }
 function WatchedItem({ film }) {
