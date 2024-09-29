@@ -2,14 +2,18 @@ import { GenenricPreviewItem } from "./GenenricPreviewItem";
 import { GenericList } from "./GenericList";
 
 export function WatchedListResults({ tempWatchedData }) {
-  return <GenericList data={tempWatchedData} List={RenderList} />;
+  return (
+    <GenericList>
+      <RenderList filmList={tempWatchedData} />
+    </GenericList>
+  );
 }
-function RenderList({ data }) {
+function RenderList({ filmList }) {
   return (
     <>
-      <Summary filmList={data} />
+      <Summary filmList={filmList} />
       <ul className="list list-watched ">
-        {data.map((el) => (
+        {filmList.map((el) => (
           <WatchedItem film={el} key={el.imdbID} />
         ))}
       </ul>

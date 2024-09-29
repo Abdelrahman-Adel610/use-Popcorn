@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Navbar } from "./Navbar";
 import { Main } from "./Main";
+import { SearchResultsList } from "./SearchResultsList";
+import { WatchedListResults } from "./WatchedListResults";
+import { ResultsStats, Search } from "./Navbar";
 
 export default function App() {
   const tempMovieData = [
@@ -52,12 +55,14 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   return (
     <>
-      <Navbar
-        numberOfresults={tempMovieData.length}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-      <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData} />
+      <Navbar>
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <ResultsStats numberOfresults={tempMovieData.length} />
+      </Navbar>
+      <Main>
+        <SearchResultsList tempMovieData={tempMovieData} />
+        <WatchedListResults tempWatchedData={tempWatchedData} />
+      </Main>
     </>
   );
 }

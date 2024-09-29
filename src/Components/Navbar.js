@@ -1,9 +1,8 @@
-export function Navbar({ numberOfresults, searchQuery, setSearchQuery }) {
+export function Navbar({ children }) {
   return (
     <div className="nav-bar">
       <Logo />
-      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <ResultsStats numberOfresults={numberOfresults} />
+      {children}
     </div>
   );
 }
@@ -14,7 +13,7 @@ function Logo() {
     </div>
   );
 }
-function Search({ searchQuery, setSearchQuery }) {
+export function Search({ searchQuery, setSearchQuery }) {
   return (
     <input
       className="search"
@@ -25,6 +24,6 @@ function Search({ searchQuery, setSearchQuery }) {
     />
   );
 }
-function ResultsStats({ numberOfresults }) {
+export function ResultsStats({ numberOfresults }) {
   return <div className="num-results">Found {numberOfresults} results</div>;
 }
