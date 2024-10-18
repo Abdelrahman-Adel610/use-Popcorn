@@ -7,29 +7,8 @@ import { ResultsStats, Search } from "./Navbar";
 import { ViewFilm } from "./ViewFilm";
 
 export default function App() {
-  const tempWatchedData = [
-    {
-      imdbID: "tt1375666",
-      Title: "Inception",
-      Year: "2010",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
-      runtime: 148,
-      imdbRating: 8.8,
-      userRating: 10,
-    },
-    {
-      imdbID: "tt0088763",
-      Title: "Back to the Future",
-      Year: "1985",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-      runtime: 116,
-      imdbRating: 8.5,
-      userRating: 9,
-    },
-  ];
   const [results, setResults] = useState([]);
+  const [watched, setWatched] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loadingList, setLoadingList] = useState(false);
   const [selectedFilmId, setSelectedFilmId] = useState(null);
@@ -58,7 +37,12 @@ export default function App() {
     },
     [searchQuery]
   );
-
+  function addTowatched(film) {
+    setWatched((e) => [...e, film]);
+  }
+  function isInWatchedList(id) {
+    return watched.find((el) => el.imdbID === id);
+  }
   return (
     <>
       <Navbar>
@@ -74,12 +58,18 @@ export default function App() {
         />
 
         {!selectedFilmId && (
-          <WatchedListResults tempWatchedData={tempWatchedData} />
+          <WatchedListResults
+            tempWatchedData={watched}
+            updateList={setWatched}
+          />
         )}
         {selectedFilmId && (
           <ViewFilm
             selectedId={selectedFilmId}
             onClose={() => setSelectedFilmId(null)}
+            addTowatched={addTowatched}
+            isInWatchedList={isInWatchedList}
+            key={selectedFilmId}
           />
         )}
       </Main>

@@ -1,20 +1,31 @@
 import { GenenricPreviewItem } from "./GenenricPreviewItem";
 import { GenericList } from "./GenericList";
 
-export function WatchedListResults({ tempWatchedData }) {
+export function WatchedListResults({ tempWatchedData, updateList }) {
   return (
     <GenericList>
-      <RenderList filmList={tempWatchedData} />
+      <RenderList filmList={tempWatchedData} updateList={updateList} />
     </GenericList>
   );
 }
-function RenderList({ filmList }) {
+function RenderList({ filmList, updateList }) {
+  function DeleteFilm(id) {
+    updateList((el) => {
+      const cpy = [...el];
+      cpy.splice(cpy.findIndex((i) => i.imdbID === id));
+      updateList([...cpy]);
+    });
+  }
   return (
     <>
       <Summary filmList={filmList} />
       <ul className="list list-watched ">
         {filmList.map((el) => (
-          <WatchedItem film={el} key={el.imdbID} />
+          <WatchedItem
+            film={el}
+            key={el.imdbID}
+            onClick={() => DeleteFilm(el.imdbID)}
+          />
         ))}
       </ul>
     </>
@@ -40,7 +51,8 @@ function Summary({ filmList }) {
     </div>
   );
 }
-function WatchedItem({ film }) {
+function WatchedItem({ film, onClick }) {
+  console.log(film);
   return (
     <GenenricPreviewItem film={film}>
       <div>
@@ -48,6 +60,9 @@ function WatchedItem({ film }) {
         <p>🌟 {film.userRating}</p>
         <p>⏳ {film.runtime}</p>
       </div>
+      <button className="btn-delete" onClick={onClick}>
+        X
+      </button>
     </GenenricPreviewItem>
   );
 }
