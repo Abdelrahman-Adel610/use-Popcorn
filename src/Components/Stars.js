@@ -1,9 +1,17 @@
 import { useState } from "react";
-
+import pt from "prop-types";
 const startsContainerStyle = {
   display: "flex",
   alignItems: "center",
-  gap: "10px",
+  gap: "3px",
+};
+Stars.propTypes = {
+  num: pt.number,
+  size: pt.number,
+  defaultRating: pt.number,
+  messages: pt.array,
+  color: pt.string,
+  setRateOut: pt.func,
 };
 export default function Stars({
   num = 10,
@@ -31,9 +39,9 @@ export default function Stars({
           color={color}
         />
       ))}
-      <p style={{ color: color, fontSize: size / 1.5 }}>
+      <p style={{ color: color, fontSize: size / 1.5, marginLeft: "10px" }}>
         {messages.length === num
-          ? messages[(hoverRate || rate )-1]
+          ? messages[(hoverRate || rate) - 1]
           : hoverRate || rate || ""}
       </p>
     </div>

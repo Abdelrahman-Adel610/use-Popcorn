@@ -1,6 +1,6 @@
-export function GenenricPreviewItem({ film, children }) {
+export function GenenricPreviewItem({ film, children, clickHandle }) {
   return (
-    <li>
+    <li onClick={() => clickHandle()}>
       <img src={film.Poster} alt={film.title} />
       <h3>{film.Title}</h3>
       {children}
