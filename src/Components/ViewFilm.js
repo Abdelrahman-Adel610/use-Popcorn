@@ -15,6 +15,20 @@ export function ViewFilm({
   const isWatched = isInWatchedList(selectedId);
   useEffect(
     function () {
+      function handler(e) {
+        if (e.key === "Escape") {
+          onClose();
+        }
+      }
+      document.addEventListener("keydown", handler);
+      return function () {
+        document.removeEventListener("keydown", handler);
+      };
+    },
+    [onClose]
+  );
+  useEffect(
+    function () {
       if (!film) return;
       document.title = `Movie | ${film.Title}`;
       return () => (document.title = "usePopcorn");
