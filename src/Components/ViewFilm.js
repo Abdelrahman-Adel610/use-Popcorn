@@ -13,6 +13,14 @@ export function ViewFilm({
   const [error, setError] = useState("");
   const [rate, setRate] = useState(0);
   const isWatched = isInWatchedList(selectedId);
+  useEffect(
+    function () {
+      if (!film) return;
+      document.title = `Movie | ${film.Title}`;
+      return () => (document.title = "usePopcorn");
+    },
+    [film]
+  );
   function AddTowatched() {
     const filmObj = {
       imdbID: selectedId,
@@ -38,7 +46,6 @@ export function ViewFilm({
           );
           const film = await resp.json();
           setFilm(film);
-
           setError("");
         } catch (err) {
           setError("❌ Unable to get the film data");

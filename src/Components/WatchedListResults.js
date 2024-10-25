@@ -34,7 +34,8 @@ function RenderList({ filmList, updateList }) {
 function Summary({ filmList }) {
   function averagre(key) {
     return (
-      filmList.reduce((acc, el) => acc + +el[`${key}`], 0) / filmList.length
+      filmList.reduce((acc, el) => acc + +el[`${key}`], 0) / filmList.length ||
+      0
     );
   }
 
@@ -45,7 +46,7 @@ function Summary({ filmList }) {
         <p>#️⃣ {filmList.length} movies</p>
         <p>⭐ {averagre("imdbRating")} </p>
         <p>🌟 {averagre("userRating")} </p>
-        <p>⏳ {averagre("runtime")} </p>
+        <p>⏳ {averagre("runtime")} min </p>
       </div>
       <div></div>
     </div>
@@ -58,7 +59,7 @@ function WatchedItem({ film, onClick }) {
       <div>
         <p>⭐ {film.imdbRating}</p>
         <p>🌟 {film.userRating}</p>
-        <p>⏳ {film.runtime}</p>
+        <p>⏳ {film.runtime} </p>
       </div>
       <button className="btn-delete" onClick={onClick}>
         X
