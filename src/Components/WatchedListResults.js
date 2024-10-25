@@ -2,6 +2,8 @@ import { GenenricPreviewItem } from "./GenenricPreviewItem";
 import { GenericList } from "./GenericList";
 
 export function WatchedListResults({ tempWatchedData, updateList }) {
+  console.log(tempWatchedData);
+
   return (
     <GenericList>
       <RenderList filmList={tempWatchedData} updateList={updateList} />
@@ -9,13 +11,6 @@ export function WatchedListResults({ tempWatchedData, updateList }) {
   );
 }
 function RenderList({ filmList, updateList }) {
-  function DeleteFilm(id) {
-    updateList((el) => {
-      const cpy = [...el];
-      cpy.splice(cpy.findIndex((i) => i.imdbID === id));
-      updateList([...cpy]);
-    });
-  }
   return (
     <>
       <Summary filmList={filmList} />
@@ -24,7 +19,7 @@ function RenderList({ filmList, updateList }) {
           <WatchedItem
             film={el}
             key={el.imdbID}
-            onClick={() => DeleteFilm(el.imdbID)}
+            onClick={() => updateList(el.imdbID)}
           />
         ))}
       </ul>
@@ -53,7 +48,6 @@ function Summary({ filmList }) {
   );
 }
 function WatchedItem({ film, onClick }) {
-  console.log(film);
   return (
     <GenenricPreviewItem film={film}>
       <div>

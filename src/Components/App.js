@@ -8,11 +8,18 @@ import { ViewFilm } from "./ViewFilm";
 
 export default function App() {
   const [results, setResults] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(
+    JSON.parse(localStorage.getItem("watched"))
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [loadingList, setLoadingList] = useState(false);
   const [selectedFilmId, setSelectedFilmId] = useState(null);
   const [error, setError] = useState("");
+  function handleDeleteWatched(id) {
+    const cpy = [...watched];
+    cpy.splice(cpy.findIndex((i) => i.imdbID === id));
+    setWatched(cpy);
+  }
   useEffect(
     function () {
       const controller = new AbortController();
@@ -41,6 +48,12 @@ export default function App() {
       };
     },
     [searchQuery]
+  );
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
   );
   function addTowatched(film) {
     setWatched((e) => [...e, film]);
@@ -71,7 +84,7 @@ export default function App() {
         {!selectedFilmId && (
           <WatchedListResults
             tempWatchedData={watched}
-            updateList={setWatched}
+            updateList={handleDeleteWatched}
           />
         )}
         {selectedFilmId && (
