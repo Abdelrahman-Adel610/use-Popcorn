@@ -8,7 +8,7 @@ import { ViewFilm } from "./ViewFilm";
 
 export default function App() {
   const [results, setResults] = useState([]);
-  const [watched, setWatched] = useState(
+  const [watched, setWatched] = useState(() =>
     JSON.parse(localStorage.getItem("watched"))
   );
   const [searchQuery, setSearchQuery] = useState("");
