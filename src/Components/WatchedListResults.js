@@ -15,7 +15,7 @@ function RenderList({ filmList, updateList }) {
     <>
       <Summary filmList={filmList} />
       <ul className="list list-watched ">
-        {filmList.map((el) => (
+        {filmList?.map((el) => (
           <WatchedItem
             film={el}
             key={el.imdbID}

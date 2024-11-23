@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 export function Navbar({ children }) {
   return (
     <div className="nav-bar">
@@ -14,6 +16,23 @@ function Logo() {
   );
 }
 export function Search({ searchQuery, setSearchQuery }) {
+  const searchElement = useRef(null);
+  useEffect(
+    function () {
+      function callback(e) {
+        if (
+          e.code === "Enter" &&
+          document.activeElement !== searchElement.current
+        ) {
+          searchElement.current.focus();
+          setSearchQuery("");
+        }
+      }
+      document.addEventListener("keydown", callback);
+      return () => document.removeEventListener("keydown", callback);
+    },
+    [setSearchQuery]
+  );
   return (
     <input
       className="search"
@@ -21,6 +40,7 @@ export function Search({ searchQuery, setSearchQuery }) {
       type="text"
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
+      ref={searchElement}
     />
   );
 }
