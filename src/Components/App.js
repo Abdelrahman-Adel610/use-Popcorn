@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Navbar } from "./Navbar";
 import { Main } from "./Main";
 import { SearchResultsList } from "./SearchResultsList";
@@ -6,27 +6,19 @@ import { WatchedListResults } from "./WatchedListResults";
 import { ResultsStats, Search } from "./Navbar";
 import { ViewFilm } from "./ViewFilm";
 import { useGetResults } from "./useGetResults";
+import { useLocalStorage } from "./useLocalStorage";
 
 export default function App() {
-  const [watched, setWatched] = useState(() => {
-    const dt = localStorage.getItem("watched");
-    return dt?.length ? JSON.parse(dt) : [];
-  });
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilmId, setSelectedFilmId] = useState(null);
   const { results, loadingList, error } = useGetResults(searchQuery);
+  const [watched, setWatched] = useLocalStorage([], "watched");
   function handleDeleteWatched(id) {
     const cpy = [...watched];
     cpy.splice(cpy.findIndex((i) => i.imdbID === id));
     setWatched(cpy);
   }
 
-  useEffect(
-    function () {
-      localStorage.setItem("watched", JSON.stringify(watched));
-    },
-    [watched]
-  );
   function addTowatched(film) {
     setWatched((e) => [...e, film]);
   }
