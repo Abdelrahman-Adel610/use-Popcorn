@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import pt from "prop-types";
 const startsContainerStyle = {
   display: "flex",
@@ -23,6 +23,7 @@ export default function Stars({
 }) {
   const [rate, setRate] = useState(defaultRating);
   const [hoverRate, setHoverRate] = useState(0);
+  const trials = useRef(0);
   return (
     <div style={startsContainerStyle}>
       {Array.from({ length: num }, (el, i) => (
@@ -32,6 +33,8 @@ export default function Stars({
           onClickHandler={() => {
             setRate(i + 1);
             setRateOut && setRateOut(i + 1);
+            trials.current++;
+            console.log(trials.current);
           }}
           onEnter={() => setHoverRate(i + 1)}
           onLeave={() => setHoverRate(0)}

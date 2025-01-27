@@ -2,8 +2,6 @@ import { GenenricPreviewItem } from "./GenenricPreviewItem";
 import { GenericList } from "./GenericList";
 
 export function WatchedListResults({ tempWatchedData, updateList }) {
-  console.log(tempWatchedData);
-
   return (
     <GenericList>
       <RenderList filmList={tempWatchedData} updateList={updateList} />
