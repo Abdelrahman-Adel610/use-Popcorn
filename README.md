@@ -1,6 +1,10 @@
+
 # 🍿 usePopcorn
 
 A movie application built with React.js, showcasing the use of hooks and context for state management.
+![usePopcorn](https://github.com/user-attachments/assets/b578d780-537c-4ee8-ae3b-00c95e3c0d1f)
+![usePopcorn2](https://github.com/user-attachments/assets/648a32ad-6b2b-4d91-8ad2-a96cc772cd60)
+![usePopcorn3](https://github.com/user-attachments/assets/9b5ba1c1-b2ae-45e7-a88f-eb2bb6a31eda)
 
 ## 👁️ Overview
 
