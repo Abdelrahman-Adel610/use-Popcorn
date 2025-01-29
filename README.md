@@ -6,26 +6,19 @@ A movie application built with React.js, showcasing the use of hooks and context
 
 usePopcorn is a React.js project designed to provide a comprehensive example of using React hooks and context to manage state in a movie application. The project demonstrates best practices in component design, state management, and API integration, making it a valuable resource for learning and reference.
 
-## Project Structure 
+## Project Structure
 
 - `public/index.html`: The main HTML file.
 - `src/index.js`: The entry point for the React application.
 - `src/App.js`: The main App component.
 - `src/components/`: Directory containing reusable components.
-- `src/context/`: Directory containing context providers for state management.
-- `src/hooks/`: Directory containing custom hooks.
 - `src/styles/`: Directory containing CSS files for styling.
 
 ## ⚙️ Features
 
 - **React Hooks:** Utilizes useState, useEffect, useContext, and custom hooks for state management. 🔝
-- **Context API:** Manages global state using React's Context API. ↗️
 - **API Integration:** Fetches and displays movie data from an external API. 🌟
 - **Responsive Design:** Ensures the application is usable on various screen sizes. 📱
-
-## 🔴 Notes
-
-This project is ideal for developers looking to enhance their skills in React.js and understand how to build scalable and maintainable applications.
 
 ## 📈 Future Improvements
 
@@ -44,7 +37,7 @@ This project is ideal for developers looking to enhance their skills in React.js
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-username/usePopcorn
+   git clone https://github.com/abdelrahman-adel610/usePopcorn
    ```
 
 2. **Navigate to the Project Directory:**

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Navbar } from "./Navbar";
-import { Main } from "./Main";
-import { SearchResultsList } from "./SearchResultsList";
-import { WatchedListResults } from "./WatchedListResults";
-import { ResultsStats, Search } from "./Navbar";
-import { ViewFilm } from "./ViewFilm";
-import { useGetResults } from "./useGetResults";
-import { useLocalStorage } from "./useLocalStorage";
+import { Navbar } from "./Components/Navbar";
+import { Main } from "./Components/Main";
+import { SearchResultsList } from "./Components/SearchResultsList";
+import { WatchedListResults } from "./Components/WatchedListResults";
+import { ResultsStats, Search } from "./Components/Navbar";
+import { ViewFilm } from "./Components/ViewFilm";
+import { useGetResults } from "./Components/useGetResults";
+import { useLocalStorage } from "./Components/useLocalStorage";
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
